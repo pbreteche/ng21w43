@@ -4,6 +4,7 @@
     <dt>Email</dt><dd>{{ contact.email }}</dd>
   </dl>
   <div>
-    <button (click)="changeEmail('tony.stark@example.com')">Changer l'email</button>
+    <input type="email" #emailInput>
+    <button (click)="changeEmail(emailInput.value)">Changer l'email</button>
   </div>
 </article>
