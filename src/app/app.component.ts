@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Contact } from './model/contact';
+import {ContactLoader} from "./loader/contact_loader";
 
 @Component({
   selector: 'app-root',
@@ -9,15 +10,13 @@ import { Contact } from './model/contact';
 export class AppComponent implements OnInit {
   current?: Contact;
   contacts: Contact[] = [];
+  loader = new ContactLoader();
 
   ngOnInit(): void {
-    const contact = new Contact();
-    contact.firstName = 'Tony';
-    contact.lastName = 'Stark';
-    contact.email = 'tony@stark.com';
-
-    this.contacts.push(contact);
-    this.current = contact;
+    this.contacts = this.loader.load();
+    if (1 < this.contacts.length) {
+      this.current = this.contacts[0];
+    }
   }
 
   changeEmail(newEmail: string): void {
