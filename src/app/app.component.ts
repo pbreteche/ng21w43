@@ -24,4 +24,8 @@ export class AppComponent implements OnInit {
       this.current.email = newEmail;
     }
   }
+
+  select(contact: Contact) {
+    this.current = contact;
+  }
 }
