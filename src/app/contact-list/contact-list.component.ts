@@ -1,19 +1,17 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
-import { Contact } from "../model/contact";
+import { Component, OnInit } from '@angular/core';
+import { Contact } from '../model/contact';
+import { ContactLoader } from '../loader/contact_loader';
 
 @Component({
   selector: 'app-contact-list',
   templateUrl: './contact-list.component.html',
   styleUrls: ['./contact-list.component.scss']
 })
-export class ContactListComponent {
-  @Input()
+export class ContactListComponent implements OnInit {
   contacts: Contact[] = [];
+  loader = new ContactLoader();
 
-  @Output('contactSelected')
-  emitter = new EventEmitter<Contact>();
-
-  select(contact: Contact) {
-    this.emitter.emit(contact);
+  ngOnInit(): void {
+    this.contacts = this.loader.load();
   }
 }
