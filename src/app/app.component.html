@@ -1,10 +1,15 @@
 <article>
-  <h1>{{ contact.firstName }} {{ contact.lastName }}</h1>
+  <h1>{{ current?.firstName }} {{ current?.lastName }}</h1>
   <dl>
-    <dt>Email</dt><dd>{{ contact.email }}</dd>
+    <dt>Email</dt><dd>{{ current?.email }}</dd>
   </dl>
   <div>
     <input type="email" #emailInput>
     <button (click)="changeEmail(emailInput.value)">Changer l'email</button>
   </div>
+  <nav>
+    <ul>
+      <li *ngFor="let contact of contacts"><a>{{ contact.lastName }}</a></li>
+    </ul>
+  </nav>
 </article>

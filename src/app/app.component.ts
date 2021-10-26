@@ -7,15 +7,22 @@ import { Contact } from './model/contact';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  contact = new Contact();
+  current?: Contact;
+  contacts: Contact[] = [];
 
   ngOnInit(): void {
-    this.contact.firstName = 'Tony';
-    this.contact.lastName = 'Stark';
-    this.contact.email = 'tony@stark.com';
+    const contact = new Contact();
+    contact.firstName = 'Tony';
+    contact.lastName = 'Stark';
+    contact.email = 'tony@stark.com';
+
+    this.contacts.push(contact);
+    this.current = contact;
   }
 
   changeEmail(newEmail: string): void {
-    this.contact.email = newEmail;
+    if (this.current) {
+      this.current.email = newEmail;
+    }
   }
 }
