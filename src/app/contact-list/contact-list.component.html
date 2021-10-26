@@ -1,5 +1,5 @@
 <nav>
   <ul>
-    <li *ngFor="let contact of contacts"><a>{{ contact.lastName }}</a></li>
+    <li *ngFor="let contact of contacts"><a [routerLink]="[contact.id]">{{ contact.lastName }}</a></li>
   </ul>
 </nav>
