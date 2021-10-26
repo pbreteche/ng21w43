@@ -8,8 +8,17 @@ import {Component, EventEmitter, Output} from '@angular/core';
 export class EmailEditComponent {
   @Output('emailEdited')
   emitter = new EventEmitter<string>();
+  lastError = '';
 
-  onEmailEdit(value: string) {
+  onEmailEdit(value: string): void {
+    const EMAIL_PATTERN = /\S+@\S+\.\S+/;
+
+    if (!EMAIL_PATTERN.test(value)) {
+      this.lastError = 'Email invalide';
+      return;
+    }
+
+    this.lastError = '';
     this.emitter.emit(value);
   }
 }
