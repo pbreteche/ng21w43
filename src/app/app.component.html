@@ -1,7 +1,3 @@
 <app-detail [contact]="current"></app-detail>
 <app-email-edit (emailEdited)="changeEmail($event)"></app-email-edit>
-<nav>
-  <ul>
-    <li *ngFor="let contact of contacts"><a (click)="select(contact)">{{ contact.lastName }}</a></li>
-  </ul>
-</nav>
+<app-contact-list [contacts]="contacts" (contactSelected)="select($event)"></app-contact-list>
