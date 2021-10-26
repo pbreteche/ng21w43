@@ -14,4 +14,8 @@ export class AppComponent implements OnInit {
     this.contact.lastName = 'Stark';
     this.contact.email = 'tony@stark.com';
   }
+
+  changeEmail(newEmail: string): void {
+    this.contact.email = newEmail;
+  }
 }
