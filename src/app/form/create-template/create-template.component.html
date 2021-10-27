@@ -1,17 +1,32 @@
-<form>
+<form #form="ngForm">
   <div>
+    <p class="help" [hidden]="firstName.untouched || firstName.valid">Merci de renseigner un prénom</p>
+    <p class="help" *ngIf="firstName.touched && firstName.invalid">Merci de renseigner un prénom</p>
     <label for="contact[firstName]">Prénom</label>
-    <input type="text" id="contact[firstName]" name="firstName" [(ngModel)]="contact.firstName" required>
+    <input type="text" id="contact[firstName]" name="firstName" [(ngModel)]="contact.firstName" required
+           #firstName="ngModel"
+    >
   </div>
   <div>
+    <p class="help" [hidden]="lastName.untouched || !lastName.errors?.required">
+      Merci de renseigner un nom
+    </p>
+    <p class="help" [hidden]="lastName.untouched || !lastName.errors?.pattern">
+      Le nom ne doit comporter que des lettres (sans accent) ou des chiffres
+    </p>
     <label for="contact[lastName]">Nom</label>
-    <input type="text" id="contact[lastName]" name="lastName" [(ngModel)]="contact.lastName">
+    <input type="text" id="contact[lastName]" name="lastName" [(ngModel)]="contact.lastName"
+           pattern="[A-Za-z0-9]+" required  #lastName="ngModel"
+    >
   </div>
   <div>
+    <p class="help" [hidden]="email.untouched || email.valid">Merci de fournir une adresse email valide</p>
     <label for="contact[email]">Email</label>
-    <input type="email" id="contact[email]" name="email" [(ngModel)]="contact.email">
+    <input type="email" id="contact[email]" name="email" [(ngModel)]="contact.email"
+           pattern="[^@]+@[^@]+\.[a-z]{2,}" #email="ngModel"
+    >
   </div>
-  <button>Valider</button>
+  <button [disabled]="form.invalid">Valider</button>
 </form>
 
 <div>
