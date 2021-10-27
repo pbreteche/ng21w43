@@ -18,8 +18,9 @@ export class DetailComponent implements OnInit{
   ) {}
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe((params: ParamMap) =>
-      this.id = params.get('id')
-    )
+    this.route.paramMap.subscribe((params: ParamMap) => {
+        this.id = params.get('id');
+        this.contact = this.loader.loadById(this.id);
+    })
   }
 }
