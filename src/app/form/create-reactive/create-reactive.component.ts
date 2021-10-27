@@ -17,7 +17,6 @@ export class CreateReactiveComponent implements OnInit {
       Validators.pattern(/^[A-Za-z0-9]+$/)
     ]),
     email: new FormControl('', [
-      Validators.required,
       Validators.pattern(/^[^@]+@[^@]+\.[a-z]{2,}$/),
     ]),
   });
