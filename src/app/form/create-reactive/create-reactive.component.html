@@ -1,4 +1,4 @@
-<form [formGroup]="form">
+<form [formGroup]="form" (ngSubmit)="save()">
   <div>
     <p class="help" [hidden]="form.get('firstName')?.untouched || !form.get('firstName')?.errors?.required">
       Merci de renseigner un prénom
