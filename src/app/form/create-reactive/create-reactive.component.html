@@ -1,0 +1,29 @@
+<form [formGroup]="form">
+  <div>
+    <p class="help">Merci de renseigner un prénom</p>
+    <label for="contact[firstName]">Prénom</label>
+    <input type="text" id="contact[firstName]" name="firstName"
+      formControlName="firstName"
+    >
+  </div>
+  <div>
+    <p class="help">
+      Merci de renseigner un nom
+    </p>
+    <p class="help">
+      Le nom ne doit comporter que des lettres (sans accent) ou des chiffres
+    </p>
+    <label for="contact[lastName]">Nom</label>
+    <input type="text" id="contact[lastName]" name="lastName"
+      formControlName="lastName"
+    >
+  </div>
+  <div>
+    <p class="help">Merci de fournir une adresse email valide</p>
+    <label for="contact[email]">Email</label>
+    <input type="email" id="contact[email]" name="email"
+           formControlName="email"
+    >
+  </div>
+  <button>Valider</button>
+</form>
