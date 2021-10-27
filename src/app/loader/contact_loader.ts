@@ -1,4 +1,5 @@
 import {Contact} from "../model/contact";
+import {Observable, of} from "rxjs";
 
 export class ContactLoader {
 
@@ -17,11 +18,11 @@ export class ContactLoader {
     return this.data;
   }
 
-  loadById(id: number): Contact {
+  loadById(id: number): Observable<Contact> {
     if (0 == this.data.length) {
       this.load();
     }
 
-    return this.data[id];
+    return of(this.data[id]);
   }
 }

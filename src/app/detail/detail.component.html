@@ -1,10 +1,7 @@
-<article>
-  <h1>{{ contact?.firstName }} {{ contact?.lastName }}</h1>
-  <dl>
-    <dt>ID</dt><dd>{{ id }}</dd>
-    <dt>Email</dt><dd>{{ contact?.email }}</dd>
-  </dl>
-</article>
+<dl>
+  <dt>ID</dt><dd>{{ (contact$ | async)?.id }}</dd>
+  <dt>Email</dt><dd>{{ (contact$ | async)?.email }}</dd>
+</dl>
 <nav>
   <a routerLink="">Retour à la liste</a>
 </nav>
