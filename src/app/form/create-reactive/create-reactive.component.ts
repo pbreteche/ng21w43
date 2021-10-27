@@ -12,8 +12,14 @@ export class CreateReactiveComponent implements OnInit {
   contact = new Contact();
   form = new FormGroup({
     firstName: new FormControl('', Validators.required),
-    lastName: new FormControl('', [Validators.required, Validators.pattern(/[A-Za-z0-9]+/)]),
-    email: new FormControl('', Validators.pattern(/[^@]+@[^@]+\.[a-z]{2,}/)),
+    lastName: new FormControl('', [
+      Validators.required,
+      Validators.pattern(/^[A-Za-z0-9]+$/)
+    ]),
+    email: new FormControl('', [
+      Validators.required,
+      Validators.pattern(/^[^@]+@[^@]+\.[a-z]{2,}$/),
+    ]),
   });
 
   ngOnInit(): void {
