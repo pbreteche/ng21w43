@@ -9,7 +9,9 @@ import { ContactLoader } from '../loader/contact_loader';
 })
 export class ContactListComponent implements OnInit {
   contacts: Contact[] = [];
-  loader = new ContactLoader();
+
+  constructor(private loader: ContactLoader) {
+  }
 
   ngOnInit(): void {
     this.contacts = this.loader.load();

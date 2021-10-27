@@ -1,6 +1,10 @@
 import {Contact} from "../model/contact";
 import {Observable, of} from "rxjs";
+import {Injectable} from "@angular/core";
 
+@Injectable({
+  providedIn: 'root'
+})
 export class ContactLoader {
 
   data: Contact[] = [];
@@ -24,5 +28,10 @@ export class ContactLoader {
     }
 
     return of(this.data[id]);
+  }
+
+  save(contact: Contact) {
+    contact.id = this.data.length;
+    this.data.push(contact);
   }
 }

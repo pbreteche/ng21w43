@@ -13,11 +13,11 @@ import {Observable} from "rxjs";
 })
 export class DetailComponent implements OnDestroy {
   contact$: Observable<Contact>;
-  loader = new ContactLoader();
 
   constructor(
     private route: ActivatedRoute,
-    private titleService: TitleService
+    private titleService: TitleService,
+    private loader: ContactLoader
   ) {
     this.contact$ = this.route.paramMap.pipe(
       switchMap((params: ParamMap) =>
