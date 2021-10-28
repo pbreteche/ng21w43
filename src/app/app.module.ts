@@ -17,6 +17,7 @@ import { ContactAreaComponent } from './contact-area/contact-area.component';
 import { ParityLengthDirective } from './validators/parity-length.directive';
 import { EmailMaskPipe } from './pipes/email-mask.pipe';
 import { HighlightDirective } from './directives/highlight.directive';
+import { UnlessDirective } from './directives/unless.directive';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { HighlightDirective } from './directives/highlight.directive';
     ContactAreaComponent,
     ParityLengthDirective,
     EmailMaskPipe,
-    HighlightDirective
+    HighlightDirective,
+    UnlessDirective
   ],
   imports: [
     BrowserModule,

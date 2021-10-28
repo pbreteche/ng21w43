@@ -9,3 +9,5 @@
 <p>{{ today | date:'full':undefined:'de-DE' }}</p>
 <p>{{ today | date:'dd MMM YY' }}</p>
 <p>{{ price | currency:'EUR' }}</p>
+
+<p *appUnless="price < 10000 ">Vous pouvez payer en trois fois sans frais</p>
