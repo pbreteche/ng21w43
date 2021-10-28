@@ -1,3 +1,15 @@
 a {
   cursor: pointer;
 }
+
+.state {
+  &-draft {
+    background-color: lightgrey;
+  }
+  &-active {
+    background-color: lightgreen;
+  }
+  &-inactive {
+    background-color: lightpink;
+  }
+}

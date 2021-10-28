@@ -3,4 +3,5 @@ export class Contact {
   lastName = '';
   firstName = '';
   email = '';
+  state = 'draft';
 }
