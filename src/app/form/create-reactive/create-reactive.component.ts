@@ -3,6 +3,7 @@ import {Contact} from "../../model/contact";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ContactLoader} from "../../loader/contact_loader";
 import {Router} from "@angular/router";
+import {parityLength} from "../../validators/parity-length.directive";
 
 @Component({
   selector: 'app-create-reactive',
@@ -11,7 +12,11 @@ import {Router} from "@angular/router";
 })
 export class CreateReactiveComponent {
   form = new FormGroup({
-    firstName: new FormControl('', Validators.required),
+    firstName: new FormControl('', [
+      Validators.required,
+      parityLength
+    ]
+    ),
     lastName: new FormControl('', [
       Validators.required,
       Validators.pattern(/^[A-Za-z0-9]+$/)

@@ -3,6 +3,9 @@
     <p class="help" [hidden]="form.get('firstName')?.untouched || !form.get('firstName')?.errors?.required">
       Merci de renseigner un prénom
     </p>
+    <p class="help" [hidden]="form.get('firstName')?.untouched || !form.get('firstName')?.errors?.parityLength">
+      Le prénom doit avoir un nombre pair de caractères
+    </p>
     <label for="contact[firstName]">Prénom</label>
     <input type="text" id="contact[firstName]" name="firstName"
       formControlName="firstName"
