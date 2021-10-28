@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {Contact} from "../../model/contact";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ContactLoader} from "../../loader/contact_loader";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-create-reactive',
@@ -20,11 +21,14 @@ export class CreateReactiveComponent {
     ]),
   });
 
-  constructor(private contactLoader: ContactLoader) {
-  }
+  constructor(
+    private contactLoader: ContactLoader,
+    private router: Router
+  ) {}
 
   save() {
-    this.contactLoader.save(Object.assign(new Contact(), this.form.getRawValue()));
-    this.form.reset();
+    const contact = Object.assign(new Contact(), this.form.getRawValue());
+    this.contactLoader.save(contact);
+    this.router.navigate([contact.id], {queryParams: {lang: 'de'}});
   }
 }
