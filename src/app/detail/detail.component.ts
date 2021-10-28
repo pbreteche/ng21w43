@@ -13,6 +13,7 @@ import {Observable} from "rxjs";
 })
 export class DetailComponent implements OnDestroy {
   contact$: Observable<Contact>;
+  lang = 'fr';
 
   constructor(
     private route: ActivatedRoute,
@@ -23,6 +24,10 @@ export class DetailComponent implements OnDestroy {
       switchMap((params: ParamMap) =>
         this.loader.loadById(+params.get('id')!)
       )
+    );
+
+    this.route.queryParamMap.subscribe((params: ParamMap) =>
+      this.lang = params.get('lang')!
     );
 
     this.contact$.subscribe((contact: Contact) => {
