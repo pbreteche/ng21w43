@@ -1,5 +1,5 @@
 <dl>
-  <dt>ID</dt><dd>{{ (contact$ | async)?.id }}</dd>
+  <dt>ID</dt><dd appHighlight>{{ (contact$ | async)?.id }}</dd>
   <dt>Email</dt><dd>{{ (contact$ | async)?.email | emailMask }}</dd>
 </dl>
 <nav>

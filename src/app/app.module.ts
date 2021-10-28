@@ -16,6 +16,7 @@ import {AdminGuard} from "./admin.guard";
 import { ContactAreaComponent } from './contact-area/contact-area.component';
 import { ParityLengthDirective } from './validators/parity-length.directive';
 import { EmailMaskPipe } from './pipes/email-mask.pipe';
+import { HighlightDirective } from './directives/highlight.directive';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { EmailMaskPipe } from './pipes/email-mask.pipe';
     PageNotFoundComponent,
     ContactAreaComponent,
     ParityLengthDirective,
-    EmailMaskPipe
+    EmailMaskPipe,
+    HighlightDirective
   ],
   imports: [
     BrowserModule,
