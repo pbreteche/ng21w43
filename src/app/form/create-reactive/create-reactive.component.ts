@@ -29,6 +29,6 @@ export class CreateReactiveComponent {
   save() {
     const contact = Object.assign(new Contact(), this.form.getRawValue());
     this.contactLoader.save(contact);
-    this.router.navigate([contact.id], {queryParams: {lang: 'de'}});
+    this.router.navigate(['contacts', contact.id], {queryParams: {lang: 'de'}});
   }
 }

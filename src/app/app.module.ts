@@ -11,6 +11,7 @@ import { CreateTemplateComponent } from './form/create-template/create-template.
 import { CreateReactiveComponent } from './form/create-reactive/create-reactive.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import {AdminGuard} from "./admin.guard";
+import { ContactAreaComponent } from './contact-area/contact-area.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import {AdminGuard} from "./admin.guard";
     ContactListComponent,
     CreateTemplateComponent,
     CreateReactiveComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    ContactAreaComponent
   ],
   imports: [
     BrowserModule,
@@ -28,9 +30,15 @@ import {AdminGuard} from "./admin.guard";
     ReactiveFormsModule,
     RouterModule.forRoot([
       { path: '', redirectTo: '/contacts', pathMatch: 'full' },
-      { path: 'contacts', component: ContactListComponent },
-      { path: 'new', component: CreateReactiveComponent, canActivate: [AdminGuard] },
-      { path: ':id', component: DetailComponent },
+      // ContactArea factorise les variables d'état des composants enfants
+      //    fournit un nouveau <router-outlet>
+      { path: 'contacts', component: ContactAreaComponent,
+          children: [
+            { path: '', component: ContactListComponent },
+            { path: 'new', component: CreateReactiveComponent, canActivate: [AdminGuard] },
+            { path: ':id', component: DetailComponent },
+          ]
+      },
       { path: '**', component: PageNotFoundComponent }
     ])
   ],
