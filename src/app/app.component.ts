@@ -9,6 +9,8 @@ import {Observable} from "rxjs";
 })
 export class AppComponent {
   title$: Observable<string>;
+  today = new Date();
+  price = 12345.67;
 
   constructor(titleService: TitleService) {
     this.title$ = titleService.title$;

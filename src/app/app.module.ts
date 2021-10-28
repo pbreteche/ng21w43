@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from "@angular/router";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import '@angular/common/locales/global/fr';
+import '@angular/common/locales/global/de';
 
 import { AppComponent } from './app.component';
 import { DetailComponent } from './detail/detail.component';

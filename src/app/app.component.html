@@ -6,3 +6,6 @@
   </ul>
 </nav>
 <router-outlet></router-outlet>
+<p>{{ today | date:'full':undefined:'de-DE' }}</p>
+<p>{{ today | date:'dd MMM YY' }}</p>
+<p>{{ price | currency:'EUR' }}</p>
