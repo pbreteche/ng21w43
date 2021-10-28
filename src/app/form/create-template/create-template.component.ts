@@ -9,6 +9,11 @@ import {ContactLoader} from "../../loader/contact_loader";
 })
 export class CreateTemplateComponent {
   contact = new Contact();
+  ids = {
+    firstName: 'contact[firstName]',
+    lastName: 'contact[lastName]',
+    email: 'contact[email]',
+  }
 
   constructor(private contactLoader: ContactLoader) {
   }

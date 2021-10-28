@@ -5,10 +5,11 @@
     <p class="help" [hidden]="firstName.untouched || !firstName.errors?.parityLength">
       Le prénom doit avoir un nombre pair de caractères
     </p>
-    <label for="contact[firstName]">Prénom</label>
-    <input type="text" id="contact[firstName]" name="firstName" [(ngModel)]="contact.firstName" required
-           #firstName="ngModel" appParityLength="odd"
+    <label [attr.for]="ids.firstName">Prénom</label>
+    <input type="text" [id]="ids.firstName" name="firstName" [(ngModel)]="contact.firstName" required
+           #firstName="ngModel" appParityLength="odd" [attr.aria-describedby]="ids.firstName+'[help]'"
     >
+    <p class="help" [id]="ids.firstName+'[help]'">Saisissez votre prénom, tel qu'il apparaît sur votre pièce d'identité.</p>
   </div>
   <div>
     <p class="help" [hidden]="lastName.untouched || !lastName.errors?.required">
