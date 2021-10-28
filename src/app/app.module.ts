@@ -10,6 +10,7 @@ import { ContactListComponent } from './contact-list/contact-list.component';
 import { CreateTemplateComponent } from './form/create-template/create-template.component';
 import { CreateReactiveComponent } from './form/create-reactive/create-reactive.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import {AdminGuard} from "./admin.guard";
 
 @NgModule({
   declarations: [
@@ -26,8 +27,9 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot([
-      { path: '', component: ContactListComponent },
-      { path: 'new', component: CreateReactiveComponent },
+      { path: '', redirectTo: '/contacts', pathMatch: 'full' },
+      { path: 'contacts', component: ContactListComponent },
+      { path: 'new', component: CreateReactiveComponent, canActivate: [AdminGuard] },
       { path: ':id', component: DetailComponent },
       { path: '**', component: PageNotFoundComponent }
     ])
