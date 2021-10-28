@@ -9,6 +9,7 @@ import { EmailEditComponent } from './email-edit/email-edit.component';
 import { ContactListComponent } from './contact-list/contact-list.component';
 import { CreateTemplateComponent } from './form/create-template/create-template.component';
 import { CreateReactiveComponent } from './form/create-reactive/create-reactive.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { CreateReactiveComponent } from './form/create-reactive/create-reactive.
     EmailEditComponent,
     ContactListComponent,
     CreateTemplateComponent,
-    CreateReactiveComponent
+    CreateReactiveComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -27,6 +29,7 @@ import { CreateReactiveComponent } from './form/create-reactive/create-reactive.
       { path: '', component: ContactListComponent },
       { path: 'new', component: CreateReactiveComponent },
       { path: ':id', component: DetailComponent },
+      { path: '**', component: PageNotFoundComponent }
     ])
   ],
   providers: [],
