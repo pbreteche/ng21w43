@@ -1,7 +1,11 @@
-import {AbstractControl, ValidationErrors} from "@angular/forms";
+import {AbstractControl, ValidationErrors, ValidatorFn} from "@angular/forms";
 
-export function parityLength(control: AbstractControl): ValidationErrors | null {
-  const parity = 0 == control.value.length % 2;
+export function parityLength(odd = false): ValidatorFn {
+  const parityRefValue = odd ? 1 : 0;
 
-  return parity ? null : { parityLength: { value: control.value, length: control.value.length } };
+  return (control: AbstractControl): ValidationErrors | null => {
+    const parity = parityRefValue == control.value.length % 2;
+
+    return parity ? null : { parityLength: { value: control.value, length: control.value.length } };
+  }
 }

@@ -14,7 +14,7 @@ export class CreateReactiveComponent {
   form = new FormGroup({
     firstName: new FormControl('', [
       Validators.required,
-      parityLength
+      parityLength(true)
     ]
     ),
     lastName: new FormControl('', [
