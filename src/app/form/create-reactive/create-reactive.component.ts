@@ -3,7 +3,7 @@ import {Contact} from "../../model/contact";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ContactLoader} from "../../loader/contact_loader";
 import {Router} from "@angular/router";
-import {parityLength} from "../../validators/parity-length.directive";
+import {parityLength} from "../../validators/parity-length";
 
 @Component({
   selector: 'app-create-reactive',

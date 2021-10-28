@@ -12,6 +12,7 @@ import { CreateReactiveComponent } from './form/create-reactive/create-reactive.
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import {AdminGuard} from "./admin.guard";
 import { ContactAreaComponent } from './contact-area/contact-area.component';
+import { ParityLengthDirective } from './validators/parity-length.directive';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ContactAreaComponent } from './contact-area/contact-area.component';
     CreateTemplateComponent,
     CreateReactiveComponent,
     PageNotFoundComponent,
-    ContactAreaComponent
+    ContactAreaComponent,
+    ParityLengthDirective
   ],
   imports: [
     BrowserModule,
@@ -35,7 +37,7 @@ import { ContactAreaComponent } from './contact-area/contact-area.component';
       { path: 'contacts', component: ContactAreaComponent,
           children: [
             { path: '', component: ContactListComponent },
-            { path: 'new', component: CreateReactiveComponent, canActivate: [AdminGuard] },
+            { path: 'new', component: CreateTemplateComponent, canActivate: [AdminGuard] },
             { path: ':id', component: DetailComponent },
           ]
       },

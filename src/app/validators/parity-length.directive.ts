@@ -1,11 +1,15 @@
-import {AbstractControl, ValidationErrors, ValidatorFn} from "@angular/forms";
+import {Directive, Input} from '@angular/core';
+import {AbstractControl, NG_VALIDATORS, ValidationErrors, Validator} from "@angular/forms";
+import {parityLength} from "./parity-length";
 
-export function parityLength(odd = false): ValidatorFn {
-  const parityRefValue = odd ? 1 : 0;
+@Directive({
+  selector: '[appParityLength]',
+  providers: [{provide: NG_VALIDATORS, useExisting: ParityLengthDirective, multi: true}]
+})
+export class ParityLengthDirective implements Validator {
+  @Input('appParityLength') odd = '';
 
-  return (control: AbstractControl): ValidationErrors | null => {
-    const parity = parityRefValue == control.value.length % 2;
-
-    return parity ? null : { parityLength: { value: control.value, length: control.value.length } };
+  validate(control: AbstractControl): ValidationErrors | null {
+    return parityLength('odd' == this.odd)(control);
   }
 }
