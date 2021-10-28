@@ -1,6 +1,6 @@
 <dl>
   <dt>ID</dt><dd>{{ (contact$ | async)?.id }}</dd>
-  <dt>Email</dt><dd>{{ (contact$ | async)?.email }}</dd>
+  <dt>Email</dt><dd>{{ (contact$ | async)?.email | emailMask }}</dd>
 </dl>
 <nav>
   <a routerLink="">Retour à la liste</a>

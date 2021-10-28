@@ -13,6 +13,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import {AdminGuard} from "./admin.guard";
 import { ContactAreaComponent } from './contact-area/contact-area.component';
 import { ParityLengthDirective } from './validators/parity-length.directive';
+import { EmailMaskPipe } from './pipes/email-mask.pipe';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ParityLengthDirective } from './validators/parity-length.directive';
     CreateReactiveComponent,
     PageNotFoundComponent,
     ContactAreaComponent,
-    ParityLengthDirective
+    ParityLengthDirective,
+    EmailMaskPipe
   ],
   imports: [
     BrowserModule,
