@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {InjectionToken, NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from "@angular/router";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
@@ -24,6 +24,14 @@ import {MatListModule} from "@angular/material/list";
 import {MatInputModule} from "@angular/material/input";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {HttpClientModule} from "@angular/common/http";
+import {TitleService} from "./title.service";
+
+export const API_HOST = new InjectionToken('app.api_host');
+
+const titleServiceFactory = function (option: string): TitleService {
+  // process option
+  return new TitleService();
+}
 
 @NgModule({
   declarations: [
@@ -64,7 +72,13 @@ import {HttpClientModule} from "@angular/common/http";
     MatFormFieldModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    TitleService, // syntaxe courte ClassProvider
+    { useClass: TitleService, provide: TitleService }, //syntaxe explicite ClassProvider
+    { useExisting: TitleService, provide: TitleService },
+    { useValue: 'api.mydomain.com', provide: API_HOST},
+    { useFactory: titleServiceFactory, deps: ['my option value'], provide: TitleService }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

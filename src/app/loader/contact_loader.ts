@@ -1,9 +1,10 @@
 import {Contact} from "../model/contact";
 import {BehaviorSubject, Observable, throwError} from "rxjs";
-import {Injectable} from "@angular/core";
+import {Inject, Injectable} from "@angular/core";
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {catchError} from "rxjs/operators";
 import {ManagedContact} from "../model/managed-contact";
+import {API_HOST} from "../app.module";
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +15,10 @@ export class ContactLoader {
   currentId?: number;
   currentSubject = new BehaviorSubject<Contact|undefined>(undefined);
 
-  constructor(private http: HttpClient) {
-  }
+  constructor(
+    private http: HttpClient,
+    @Inject(API_HOST)private host: string
+  ) { }
 
   load(): Contact[] {
     if (0 == this.data.length && !this.loading) {
