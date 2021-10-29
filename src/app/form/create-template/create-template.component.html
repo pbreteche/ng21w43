@@ -1,34 +1,34 @@
 <form #form="ngForm" (ngSubmit)="save(); form.reset()">
-  <div>
-    <p class="help" [hidden]="firstName.untouched || !firstName.errors?.required">Merci de renseigner un prénom</p>
-    <p class="help" *ngIf="firstName.touched && firstName.errors?.required">Merci de renseigner un prénom</p>
-    <p class="help" [hidden]="firstName.untouched || !firstName.errors?.parityLength">
+  <mat-form-field appearance="fill">
+    <mat-error [hidden]="firstName.untouched || !firstName.errors?.required">Merci de renseigner un prénom</mat-error>
+    <mat-error *ngIf="firstName.touched && firstName.errors?.required">Merci de renseigner un prénom</mat-error>
+    <mat-error [hidden]="firstName.untouched || !firstName.errors?.parityLength">
       Le prénom doit avoir un nombre pair de caractères
-    </p>
-    <label [attr.for]="ids.firstName">Prénom</label>
-    <input type="text" [id]="ids.firstName" name="firstName" [(ngModel)]="contact.firstName" required
+    </mat-error>
+    <mat-label>Prénom</mat-label>
+    <input type="text" matInput [(ngModel)]="contact.firstName" required
            #firstName="ngModel" appParityLength="odd" [attr.aria-describedby]="ids.firstName+'[help]'"
     >
-    <p class="help" [id]="ids.firstName+'[help]'">Saisissez votre prénom, tel qu'il apparaît sur votre pièce d'identité.</p>
-  </div>
-  <div>
-    <p class="help" [hidden]="lastName.untouched || !lastName.errors?.required">
+    <mat-hint>Saisissez votre prénom, tel qu'il apparaît sur votre pièce d'identité.</mat-hint>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-error [hidden]="lastName.untouched || !lastName.errors?.required">
       Merci de renseigner un nom
-    </p>
-    <p class="help" [hidden]="lastName.untouched || !lastName.errors?.pattern">
+    </mat-error>
+    <mat-error [hidden]="lastName.untouched || !lastName.errors?.pattern">
       Le nom ne doit comporter que des lettres (sans accent) ou des chiffres
-    </p>
-    <label for="contact[lastName]">Nom</label>
-    <input type="text" id="contact[lastName]" name="lastName" [(ngModel)]="contact.lastName"
+    </mat-error>
+    <mat-label>Nom</mat-label>
+    <input type="text" matInput [(ngModel)]="contact.lastName"
            pattern="[A-Za-z0-9]+" required  #lastName="ngModel"
     >
-  </div>
-  <div>
-    <p class="help" [hidden]="email.untouched || email.valid">Merci de fournir une adresse email valide</p>
-    <label for="contact[email]">Email</label>
-    <input type="email" id="contact[email]" name="email" [(ngModel)]="contact.email"
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-error [hidden]="email.untouched || email.valid">Merci de fournir une adresse email valide</mat-error>
+    <mat-label>Email</mat-label>
+    <input type="email" matInput [(ngModel)]="contact.email"
            pattern="[^@]+@[^@]+\.[a-z]{2,}" #email="ngModel"
     >
-  </div>
+  </mat-form-field>
   <button [disabled]="form.invalid">Valider</button>
 </form>

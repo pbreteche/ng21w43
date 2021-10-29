@@ -18,6 +18,11 @@ import { ParityLengthDirective } from './validators/parity-length.directive';
 import { EmailMaskPipe } from './pipes/email-mask.pipe';
 import { HighlightDirective } from './directives/highlight.directive';
 import { UnlessDirective } from './directives/unless.directive';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import {MatListModule} from "@angular/material/list";
+import {MatInputModule} from "@angular/material/input";
+import {MatFormFieldModule} from "@angular/material/form-field";
 
 @NgModule({
   declarations: [
@@ -39,18 +44,23 @@ import { UnlessDirective } from './directives/unless.directive';
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot([
-      { path: '', redirectTo: '/contacts', pathMatch: 'full' },
+      {path: '', redirectTo: '/contacts', pathMatch: 'full'},
       // ContactArea factorise les variables d'état des composants enfants
       //    fournit un nouveau <router-outlet>
-      { path: 'contacts', component: ContactAreaComponent,
-          children: [
-            { path: '', component: ContactListComponent },
-            { path: 'new', component: CreateTemplateComponent, canActivate: [AdminGuard] },
-            { path: ':id', component: DetailComponent },
-          ]
+      {
+        path: 'contacts', component: ContactAreaComponent,
+        children: [
+          {path: '', component: ContactListComponent},
+          {path: 'new', component: CreateTemplateComponent, canActivate: [AdminGuard]},
+          {path: ':id', component: DetailComponent},
+        ]
       },
-      { path: '**', component: PageNotFoundComponent }
-    ])
+      {path: '**', component: PageNotFoundComponent}
+    ]),
+    BrowserAnimationsModule,
+    MatListModule,
+    MatInputModule,
+    MatFormFieldModule
   ],
   providers: [],
   bootstrap: [AppComponent]
