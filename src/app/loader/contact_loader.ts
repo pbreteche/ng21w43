@@ -3,12 +3,13 @@ import {BehaviorSubject, Observable, throwError} from "rxjs";
 import {Injectable} from "@angular/core";
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {catchError} from "rxjs/operators";
+import {ManagedContact} from "../model/managed-contact";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ContactLoader {
-  data: Contact[] = [];
+  data: ManagedContact[] = [];
   loading = false;
   currentId?: number;
   currentSubject = new BehaviorSubject<Contact|undefined>(undefined);
@@ -32,7 +33,8 @@ export class ContactLoader {
         .subscribe((body: any) => {
           body.data.forEach(
             (item: any) => {
-              const newContact = Object.assign(new Contact(), item);
+              const newContact = Object.assign(new ManagedContact(), item);
+              newContact.persistState = 'not modified';
               this.data.push(newContact);
             }
           )
@@ -58,6 +60,19 @@ export class ContactLoader {
 
   save(contact: Contact) {
     contact.id = this.data.length;
-    this.data.push(contact);
+    const newContact = Object.assign(new ManagedContact(), contact);
+
+    this.data.push(newContact);
+  }
+
+  upload() {
+    const contactToUpload = this.data.filter(
+      (contact: ManagedContact) => contact.persistState == 'new'
+    );
+
+    contactToUpload.forEach((contact: ManagedContact) => {
+      this.http.post('contacts', contact)
+        .subscribe((data: any) => console.log(data))
+    });
   }
 }

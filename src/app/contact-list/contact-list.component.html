@@ -3,3 +3,4 @@
     <mat-list-item [ngClass]="'state-'+contact.state" *ngFor="let contact of contacts"><a [routerLink]="[contact.id]">{{ contact.lastName }}</a></mat-list-item>
   </mat-list>
 </nav>
+<button (click)="loader.upload()">Synchro</button>
