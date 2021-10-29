@@ -11,3 +11,4 @@
 <p>{{ price | currency:'EUR' }}</p>
 
 <p *appUnless="price < 10000 ">Vous pouvez payer en trois fois sans frais</p>
+<p *ngIf="!env.production">Environnement de dev</p>

@@ -73,11 +73,13 @@ const titleServiceFactory = function (option: string): TitleService {
     HttpClientModule
   ],
   providers: [
+    /*
     TitleService, // syntaxe courte ClassProvider
     { useClass: TitleService, provide: TitleService }, //syntaxe explicite ClassProvider
     { useExisting: TitleService, provide: TitleService },
-    { useValue: 'api.mydomain.com', provide: API_HOST},
     { useFactory: titleServiceFactory, deps: ['my option value'], provide: TitleService }
+     */
+    { useValue: 'api.mydomain.com', provide: API_HOST},
   ],
   bootstrap: [AppComponent]
 })
