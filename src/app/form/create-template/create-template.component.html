@@ -6,7 +6,7 @@
       Le prénom doit avoir un nombre pair de caractères
     </mat-error>
     <mat-label>Prénom</mat-label>
-    <input type="text" matInput [(ngModel)]="contact.firstName" required
+    <input type="text" matInput [(ngModel)]="contact.firstName" required name="firstName"
            #firstName="ngModel" appParityLength="odd" [attr.aria-describedby]="ids.firstName+'[help]'"
     >
     <mat-hint>Saisissez votre prénom, tel qu'il apparaît sur votre pièce d'identité.</mat-hint>
@@ -19,14 +19,14 @@
       Le nom ne doit comporter que des lettres (sans accent) ou des chiffres
     </mat-error>
     <mat-label>Nom</mat-label>
-    <input type="text" matInput [(ngModel)]="contact.lastName"
+    <input type="text" matInput [(ngModel)]="contact.lastName" name="lastName"
            pattern="[A-Za-z0-9]+" required  #lastName="ngModel"
     >
   </mat-form-field>
   <mat-form-field appearance="fill">
     <mat-error [hidden]="email.untouched || email.valid">Merci de fournir une adresse email valide</mat-error>
     <mat-label>Email</mat-label>
-    <input type="email" matInput [(ngModel)]="contact.email"
+    <input type="email" matInput [(ngModel)]="contact.email" name="email"
            pattern="[^@]+@[^@]+\.[a-z]{2,}" #email="ngModel"
     >
   </mat-form-field>

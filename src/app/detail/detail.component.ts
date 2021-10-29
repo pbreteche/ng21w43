@@ -33,8 +33,10 @@ export class DetailComponent implements OnDestroy {
       this.lang = params.get('lang')!
     );
 
-    this.contact$.subscribe((contact: Contact) => {
-      this.titleService.title = contact.firstName+' '+contact.lastName;
+    this.contact$.subscribe((contact?: Contact) => {
+      if (contact) {
+        this.titleService.title = contact.firstName+' '+contact.lastName;
+      }
     });
   }
 

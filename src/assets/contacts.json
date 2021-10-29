@@ -1,0 +1,10 @@
+{
+  "length": 4,
+  "offset": 5,
+  "data": [
+    { "id": 0, "lastName": "Lee", "firstName": "Bruce", "email": "blee@kung.fu", "state": "draft"},
+    { "id": 1, "lastName": "Stark", "firstName": "Tony", "email": "tony@stark.com", "state": "active"},
+    { "id": 2, "lastName": "Queen", "firstName": "Oliver", "email": "green@arrow.us", "state": "active"},
+    { "id": 3, "lastName": "Balmer", "firstName": "Steve", "email": "balmer@micro.soft", "state": "inactive"}
+  ]
+}
