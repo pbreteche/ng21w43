@@ -1,4 +1,4 @@
-import {InjectionToken, NgModule} from '@angular/core';
+import {InjectionToken, LOCALE_ID, NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from "@angular/router";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
@@ -25,6 +25,11 @@ import {MatInputModule} from "@angular/material/input";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {HttpClientModule} from "@angular/common/http";
 import {TitleService} from "./title.service";
+import {LocaleProvider} from "./locale.provider";
+import {TranslateModule} from "@ngx-translate/core";
+import {registerLocaleData} from "@angular/common";
+import localeFr from '@angular/common/locales/fr';
+
 
 export const API_HOST = new InjectionToken('app.api_host');
 
@@ -32,6 +37,8 @@ const titleServiceFactory = function (option: string): TitleService {
   // process option
   return new TitleService();
 }
+registerLocaleData(localeFr, 'fr');
+
 
 @NgModule({
   declarations: [
@@ -70,7 +77,8 @@ const titleServiceFactory = function (option: string): TitleService {
     MatListModule,
     MatInputModule,
     MatFormFieldModule,
-    HttpClientModule
+    HttpClientModule,
+    TranslateModule.forRoot(),
   ],
   providers: [
     /*
@@ -80,6 +88,7 @@ const titleServiceFactory = function (option: string): TitleService {
     { useFactory: titleServiceFactory, deps: ['my option value'], provide: TitleService }
      */
     { useValue: 'api.mydomain.com', provide: API_HOST},
+    LocaleProvider
   ],
   bootstrap: [AppComponent]
 })
