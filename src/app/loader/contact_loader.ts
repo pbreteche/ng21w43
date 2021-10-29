@@ -1,5 +1,5 @@
 import {Contact} from "../model/contact";
-import {Observable, of} from "rxjs";
+import {BehaviorSubject, Observable, of} from "rxjs";
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 
@@ -7,9 +7,10 @@ import {HttpClient} from "@angular/common/http";
   providedIn: 'root'
 })
 export class ContactLoader {
-
   data: Contact[] = [];
   loading = false;
+  currentId?: number;
+  currentSubject = new BehaviorSubject<Contact|undefined>(undefined);
 
   constructor(private http: HttpClient) {
   }
@@ -26,18 +27,23 @@ export class ContactLoader {
             }
           )
           this.loading = false;
+          if (this.currentId !== undefined) {
+            this.currentSubject.next(this.data[this.currentId]);
+          }
         })
     }
 
     return this.data;
   }
 
-  loadById(id: number): Observable<Contact> {
-    if (0 == this.data.length) {
-      this.load();
+  loadById(id: number): Observable<Contact|undefined> {
+    if (id != this.currentId) {
+      this.currentId = id;
+      this.currentSubject.next(this.data[id]);
     }
+    this.load();
 
-    return of(this.data[id]);
+    return this.currentSubject.asObservable();
   }
 
   save(contact: Contact) {

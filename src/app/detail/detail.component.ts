@@ -12,7 +12,7 @@ import {Observable} from "rxjs";
   styleUrls: ['./detail.component.scss']
 })
 export class DetailComponent implements OnDestroy {
-  contact$: Observable<Contact>;
+  contact$: Observable<Contact|undefined>;
   lang = 'fr';
   idSnapshot: number;
 
