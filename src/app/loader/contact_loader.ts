@@ -1,7 +1,8 @@
 import {Contact} from "../model/contact";
-import {BehaviorSubject, Observable, of} from "rxjs";
+import {BehaviorSubject, Observable, throwError} from "rxjs";
 import {Injectable} from "@angular/core";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpErrorResponse} from "@angular/common/http";
+import {catchError} from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,15 @@ export class ContactLoader {
     if (0 == this.data.length && !this.loading) {
       this.loading = true;
       this.http.get('assets/contacts.json')
+        .pipe(
+          catchError((err: HttpErrorResponse) => {
+            if (404 == err.status) {
+              return throwError('La resource n\'a pas été trouvée')
+            }
+
+            return throwError('Un erreur s\'est produite, merci de réessayer ultérieurement')
+          })
+        )
         .subscribe((body: any) => {
           body.data.forEach(
             (item: any) => {
